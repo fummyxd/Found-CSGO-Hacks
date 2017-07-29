@@ -150,7 +150,7 @@ void CSkin::SetSkinConfig()
 		g_SkinChangerCfg[WEAPON_KNIFE].iItemDefinitionIndex = WEAPON_KNIFE;
 	}
 	
-	if ( Settings::Skin::knf_ct_skin )
+	if ( Settings::Skin::knf_ct_skin)
 	{
 		g_SkinChangerCfg[WEAPON_KNIFE].nFallbackPaintKit = Settings::Skin::knf_ct_skin;
 	}
@@ -168,7 +168,7 @@ void CSkin::SetSkinConfig()
 		g_SkinChangerCfg[WEAPON_KNIFE_T].iItemDefinitionIndex = WEAPON_KNIFE_T;
 	}
 	
-	if ( Settings::Skin::knf_tt_skin )
+	if ( Settings::Skin::knf_tt_skin)
 	{
 		g_SkinChangerCfg[WEAPON_KNIFE_T].nFallbackPaintKit = Settings::Skin::knf_tt_skin;
 	}

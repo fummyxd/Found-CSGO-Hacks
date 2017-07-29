@@ -258,25 +258,16 @@ namespace Engine
 
 	void ForceFullUpdate()
 	{
-		DWORD pClientState = 0;
-
-		if ( !pClientState )
-			pClientState = CSX::Memory::FindPattern( ENGINE_DLL , FORCE_FULL_UPDATE_PATTERN , FORCE_FULL_UPDATE_MASK , 0x01 );
-
-		if ( !pClientState )
-			return;
-
-		DWORD dwClientState = ( **(PDWORD*)pClientState ) + 0x16C;
-
-		if ( Client::g_pSkin )
+		if (Client::g_pSkin)
 		{
 			Client::g_pSkin->SetSkinConfig();
 			Client::g_pSkin->SetModelConfig();
 			Client::g_pSkin->SetKillIconCfg();
 		}
 
-		if ( *(PDWORD)dwClientState != -1 )
-			*(PDWORD)dwClientState = -1;
+		typedef void(*ForceUpdate) (void);
+		ForceUpdate FullUpdate = (ForceUpdate)CSX::Memory::FindSignature("engine.dll", "FullUpdate", "A1 ? ? ? ? B9 ? ? ? ? 56 FF 50 14 8B 34 85");
+		FullUpdate();
 	}
 
 	int GetWeaponSettingsSelectID()
